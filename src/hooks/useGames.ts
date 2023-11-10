@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 
-interface Movie {
+export interface Movie {
   _id: string;
   titleText: {
     text: string;
@@ -12,6 +12,9 @@ interface Movie {
     url: string;
     __typename: string;
   } | null;
+  releaseYear: {
+    year: number;
+  };
 }
 
 interface FetchResponse {
