@@ -25,24 +25,30 @@ interface FetchResponse {
 const useGames = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
+
+    setIsLoading(true);
     apiClient
       .get<FetchResponse>("https://moviesdatabase.p.rapidapi.com/titles", {
         signal: controller.signal,
       })
       .then((res) => {
-        setMovies(res.data.results);
+        {
+          setMovies(res.data.results);
+        }
+        setIsLoading(false);
       })
       .catch((err) => {
         setError(err.message);
-
-        return controller.abort();
+        setIsLoading(false);
       });
+    return controller.abort();
   }, []);
 
-  return { movies, error };
+  return { movies, error, isLoading };
 };
 
 export default useGames;

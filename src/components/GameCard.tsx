@@ -1,5 +1,5 @@
 import { Movie } from "../hooks/useGames";
-import { Badge, Card, CardBody, Heading, Image } from "@chakra-ui/react";
+import { Badge, Card, Image } from "@chakra-ui/react";
 
 interface Props {
   game: Movie;
@@ -25,10 +25,25 @@ const GameCard = ({ game }: Props) => {
   const imageUrl = game.primaryImage?.url || defaultImageSrc;
   return (
     <div>
-      
-      <Card borderRadius={10} overflow="hidden" maxW="300px">
+      <Card
+        borderRadius={10}
+        overflow="hidden"
+        maxW="300px"
+        position="relative"
+      >
         <Image src={imageUrl} boxSize="200px" objectFit="cover" />
-        <Badge fontSize="sm" paddingX="2" paddingY="1">HD</Badge>
+        <Badge
+          position="absolute"
+          top="0"
+          right="0"
+          fontSize="sm"
+          paddingX="2"
+          paddingY="1"
+          background="blue.500" // Example background color
+          color="white" // Example text color
+        >
+          HD
+        </Badge>
       </Card>
     </div>
   );
