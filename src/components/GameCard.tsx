@@ -1,5 +1,5 @@
 import { Movie } from "../hooks/useGames";
-import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
+import { Badge, Card, CardBody, Heading, Image } from "@chakra-ui/react";
 
 interface Props {
   game: Movie;
@@ -25,8 +25,10 @@ const GameCard = ({ game }: Props) => {
   const imageUrl = game.primaryImage?.url || defaultImageSrc;
   return (
     <div>
+      
       <Card borderRadius={10} overflow="hidden" maxW="300px">
         <Image src={imageUrl} boxSize="200px" objectFit="cover" />
+        <Badge fontSize="sm" paddingX="2" paddingY="1">HD</Badge>
       </Card>
     </div>
   );
