@@ -1,9 +1,11 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 const GameGrid = () => {
-  const { movies, error } = useGames();
+  const { movies, error, isLoading } = useGames();
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <>
       {error && <Text>{error}</Text>}
@@ -13,6 +15,8 @@ const GameGrid = () => {
         flexWrap="wrap"
         justifyContent="flex-start"
       >
+        {isLoading &&
+          skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
         {movies.map((movie) => (
           <Box
             key={movie._id}
